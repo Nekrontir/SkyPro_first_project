@@ -18,3 +18,13 @@ def mask_account_card(account_card: str) -> str:
         card_number = get_mask_card_number(int(account_card[index:]))
         mask_card = account_card.replace(account_card[index:], card_number)
         return mask_card
+
+
+def get_date(date_time: str) -> str:
+    """
+    Принимает на вход строку с датой в формате "2024-03-11T02:26:18.671407"
+    и возвращает строку с датой в формате "ДД.ММ.ГГГГ"
+    """
+    split_date = (date_time.split("T")[0]).split("-")
+    date = f"{split_date[2]}.{split_date[1]}.{split_date[0]}"
+    return date
