@@ -1,7 +1,7 @@
 from datetime import datetime
 
 
-def filter_by_state(dict_list: list[dict], state_in_dict: str="EXECUTED") -> list[dict]:
+def filter_by_state(dict_list: list[dict], state_in_dict: str = "EXECUTED") -> list[dict]:
     """
     Функция принимает список словарей и опционально значение для ключа state
     (по умолчанию 'EXECUTED').
@@ -18,13 +18,13 @@ def filter_by_state(dict_list: list[dict], state_in_dict: str="EXECUTED") -> lis
     return new_dict_list
 
 
-def sort_by_date(dict_list: list[dict], direction: bool=True) -> list[dict]:
+def sort_by_date(dict_list: list[dict], direction: bool = True) -> list[dict]:
     """
     Функция принимает список словарей и необязательный параметр, задающий порядок сортировки
     (по умолчанию — убывание).
     Функция возвращает новый список, отсортированный по дате (date).
     """
 
-    new_dict_list = sorted(dict_list, key=lambda x: datetime.fromisoformat(x['date']), reverse=direction)
+    new_dict_list = sorted(dict_list, key=lambda x: datetime.fromisoformat(x["date"]), reverse=direction)
 
     return new_dict_list
