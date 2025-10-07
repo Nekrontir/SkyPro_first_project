@@ -7,4 +7,3 @@ def test_mask_card_number(card_number):
 
 def test_mask_account(account_number):
     assert get_mask_account(account_number) == "**4305"
-
