@@ -2,32 +2,32 @@ import pytest
 
 
 @pytest.fixture
-def card_number():
+def card_number() -> int:
     return 7000792289606361
 
 
 @pytest.fixture
-def account_number():
+def account_number() -> int:
     return 73654108430135874305
 
 
 @pytest.fixture
-def iso_date():
+def iso_date() -> str:
     return "2024-03-11T02:26:18.671407"
 
 
 @pytest.fixture
-def account_card_1():
+def account_card_1() -> str:
     return "Счет 73654108430135874305"
 
 
 @pytest.fixture
-def account_card_2():
+def account_card_2() -> str:
     return "Visa Platinum 7000792289606361"
 
 
 @pytest.fixture
-def dict_list():
+def dict_list() -> list:
     return [
         {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
         {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
