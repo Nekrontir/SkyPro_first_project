@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from src.masks import get_mask_account, get_mask_card_number
 
 
@@ -25,6 +27,11 @@ def get_date(date_time: str) -> str:
     Принимает на вход строку с датой в формате "2024-03-11T02:26:18.671407"
     и возвращает строку с датой в формате "ДД.ММ.ГГГГ"
     """
-    split_date = (date_time.split("T")[0]).split("-")
+    if len(date_time) == 0:
+        raise ValueError("В строке нет символов")
+
+    iso_date = datetime.fromisoformat(date_time)
+    year_month_day = str(iso_date)[:10]
+    split_date = year_month_day.split("-")
     date = f"{split_date[2]}.{split_date[1]}.{split_date[0]}"
     return date
