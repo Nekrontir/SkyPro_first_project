@@ -12,6 +12,11 @@ def empty_str() -> str:
 
 
 @pytest.fixture
+def some_str() -> str:
+    return "sdfafasdf"
+
+
+@pytest.fixture
 def empty_number() -> int:
     return 0
 
@@ -51,9 +56,9 @@ def empty_dict_list() -> list:
     return [{}, {}, {}]
 
 
-@pytest.fixture
-def empty_list() -> list:
-    return []
+# @pytest.fixture
+# def empty_list() -> list:
+#    return []
 
 
 @pytest.fixture

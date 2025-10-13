@@ -5,7 +5,7 @@ def get_mask_card_number(card_number: int) -> str:
 
     card_str = str(card_number)
 
-    if len(card_str) < 16:
+    if len(card_str) < 16 or len(card_str) > 16:
         raise ValueError("Неверное количество цифр в номере карты")
     else:
         masked_card_number = card_str[:4] + " " + card_str[4:6] + "**" + " " + "****" + " " + card_str[-4:]

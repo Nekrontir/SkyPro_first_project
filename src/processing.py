@@ -30,7 +30,7 @@ def sort_by_date(dict_list: list[dict], direction: bool = True) -> list:
     """
 
     new_dict_list: list = []
-    temp_dict_list = []
+    temp_dict_list: list = []
     for dict_in_list in dict_list:
         if bool(dict_in_list) == 0:
             continue
