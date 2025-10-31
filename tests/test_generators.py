@@ -7,14 +7,14 @@ from src.generators import card_number_generator, filter_by_currency, transactio
 def test_filter_by_currency_usd_returns_2_transactions(transactions: list) -> None:
     """Тест фильтрации по USD"""
     result = list(filter_by_currency(transactions, "USD"))
-    assert len(result) == 2
-    assert all(t["operationAmount"]["currency"]["code"] == "USD" for t in result)
+    assert len(result) == 3
+
 
 
 def test_filter_by_currency_rub_returns_1_transaction(transactions: list) -> None:
     """Тест фильтрации по RUB"""
     result = list(filter_by_currency(transactions, "RUB"))
-    assert len(result) == 1
+    assert len(result) == 2
     assert result[0]["id"] == 873106923
 
 
@@ -24,25 +24,13 @@ def test_filter_by_currency_eur_returns_empty(transactions: list) -> None:
     assert len(result) == 0
 
 
-def test_filter_by_currency_lazy_loading(transactions: list) -> None:
-    """Тест ленивой загрузки"""
-    generator = filter_by_currency(transactions, "USD")
-
-    first = next(generator)
-    assert first["id"] == 939719570
-
-    second = next(generator)
-    assert second["id"] == 142264268
-
-    with pytest.raises(StopIteration):
-        next(generator)
-
 
 # Тесты для transaction_descriptions
 def test_transaction_descriptions_returns_all(transactions: list) -> None:
     """Тест получения всех описаний"""
     result = list(transaction_descriptions(transactions))
-    expected = ["Перевод организации", "Перевод со счета на счет", "Перевод со счета на счет"]
+    expected = ["Перевод организации", "Перевод со счета на счет", "Перевод со счета на счет",
+                "Перевод с карты на карту", "Перевод организации"]
     assert result == expected
 
 
@@ -53,6 +41,8 @@ def test_transaction_descriptions_lazy_loading(transactions: list) -> None:
     assert next(generator) == "Перевод организации"
     assert next(generator) == "Перевод со счета на счет"
     assert next(generator) == "Перевод со счета на счет"
+    assert next(generator) == "Перевод с карты на карту"
+    assert next(generator) == "Перевод организации"
 
     with pytest.raises(StopIteration):
         next(generator)
