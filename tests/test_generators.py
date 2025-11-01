@@ -58,24 +58,16 @@ def test_transaction_descriptions_empty_list(empty_list: list) -> None:
 
 
 # Тесты для card_number_generator
-def test_card_number_generator_small_range() -> None:
-    """Тест маленького диапазона"""
-    result = list(card_number_generator(1, 3))
-    expected = ["0000 0000 0000 0001", "0000 0000 0000 0002", "0000 0000 0000 0003"]
-    assert result == expected
-
-
-def test_card_number_generator_single_number() -> None:
-    """Тест одного числа"""
-    result = list(card_number_generator(42, 42))
-    assert result == ["0000 0000 0000 0042"]
-
-
-def test_card_number_generator_large_numbers() -> None:
-    """Тест больших чисел"""
-    result = list(card_number_generator(9999999999999998, 9999999999999999))
-    expected = ["9999 9999 9999 9998", "9999 9999 9999 9999"]
-    assert result == expected
+@pytest.mark.parametrize(
+    "start, stop, expected",
+    [
+        (1, 3, ["0000 0000 0000 0001", "0000 0000 0000 0002", "0000 0000 0000 0003"]),
+        (42, 42, ["0000 0000 0000 0042"]),
+        (9999999999999998, 9999999999999999, ["9999 9999 9999 9998", "9999 9999 9999 9999"]),
+    ],
+)
+def test_card_number_generator_different_range(start: int, stop: int, expected: list) -> None:
+    assert list(card_number_generator(start, stop)) == expected
 
 
 def test_card_number_generator_lazy_loading() -> None:
