@@ -1,13 +1,11 @@
-
-from typing import Optional, Callable, Any
 from functools import wraps
-
+from typing import Any, Callable, Optional
 
 
 def log_to_file_or_console(filename: Optional[str] = None) -> Callable:
-    def log_decorator (func: Callable) -> Callable:
+    def log_decorator(func: Callable) -> Callable:
         @wraps(func)
-        def wrapper (*args, **kwargs) -> Any:
+        def wrapper(*args: Any, **kwargs: Any) -> Any:
             if filename is None:
                 try:
                     result = func(*args, **kwargs)
@@ -25,5 +23,7 @@ def log_to_file_or_console(filename: Optional[str] = None) -> Callable:
                     except Exception as error:
                         file.write(f"{func.__name__} error: {error}. Inputs: {args}, {kwargs}. \n")
                         raise
+
         return wrapper
+
     return log_decorator
