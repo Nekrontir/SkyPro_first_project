@@ -31,7 +31,6 @@ def card_number_generator(start: int, end: int) -> Iterator[str]:
     Генератор номеров банковских карт в формате XXXX XXXX XXXX XXXX
     """
 
-    # Проверяем валидность диапазона
     if start < 1 or end > 9999999999999999:
         raise ValueError("Диапазон должен быть от 1 до 9999999999999999")
 
@@ -41,7 +40,6 @@ def card_number_generator(start: int, end: int) -> Iterator[str]:
     current = start
 
     while current <= end:
-        # Форматируем номер карты
         card_str = str(current).zfill(16)
         formatted_card = f"{card_str[0:4]} {card_str[4:8]} {card_str[8:12]} {card_str[12:16]}"
 
