@@ -6,8 +6,9 @@ authors = [
     {name = "Viktor",email = "Nekrontirr@yandex.ru"}
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.9,<4.0"
 dependencies = [
+    "poetry-core (>=2.0.0)"
 ]
 
 
