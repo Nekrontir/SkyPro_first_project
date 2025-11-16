@@ -14,7 +14,6 @@ def test_log_to_file_or_console(capsys: CaptureFixture[str]) -> None:
     assert captured.out == f"{func.__name__} ok!\n"
 
 
-
 def test_log_to_file_or_console_error(capsys: CaptureFixture[str]) -> None:
     @log_to_file_or_console(None)
     def func() -> None:
