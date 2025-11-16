@@ -1,10 +1,9 @@
 import json
-from typing import Any, Dict, List
 
 
-def load_transactions(file_path: str) -> List[Dict[str, Any]]:
+def load_transactions(file_path: str) -> list[dict]:
     """
-    Загружает список транзакций из JSON-файла. Функция принимает-путь до JSON-файла,
+    Загружает список транзакций из JSON-файла. Функция принимает-путь до JSON-файла(с именем файла),
     возвращает-список словарей с данными о транзакциях или пустой список
     """
     try:

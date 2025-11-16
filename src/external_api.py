@@ -20,7 +20,8 @@ def get_amount_from_transaction(transaction: dict) -> float:
         amount = transaction.get("operationAmount", {}).get("amount")
         load_dotenv()
         api_key = os.getenv("API_KEY")
-        url = f"https://api.apilayer.com/exchangerates_data/convert?to={valid_currency_code}&from={currency_code}&amount={amount}"
+        url = f"https://api.apilayer.com/exchangerates_data/convert?to={valid_currency_code}\
+        &from={currency_code}&amount={amount}"
         payload = {None: any}
         headers = {"apikey": api_key}
 
