@@ -12,7 +12,6 @@ def filter_by_currency(transactions: list[dict], currency_code: str) -> Iterator
             if code == currency_code:
                 yield transaction
         except (KeyError, TypeError):
-            # Пропускаем транзакции с некорректной структурой
             continue
 
 
