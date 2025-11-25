@@ -3,9 +3,9 @@ import pandas as pd
 
 def get_transactions_from_excel_csv(path_to_file: str) -> list[dict]:
     """
-    Функция для извлечения списка транзакций из xls,xlsx,csv - файлов.
+    Функция для извлечения списка транзакций из xls, xlsx, csv - файлов.
     На вход принимает полный путь расположения файла с указанием расширения,
-    на выходе функции список словарей.
+    на выходе функции - список словарей.
     """
     if path_to_file.endswith(("xlsx", "xls")):
         try:
@@ -25,4 +25,3 @@ def get_transactions_from_excel_csv(path_to_file: str) -> list[dict]:
             return []
     else:
         return []
-
