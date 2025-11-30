@@ -1,2 +1,4 @@
+import src.processing
+
 if __name__ == "__main__":
     pass

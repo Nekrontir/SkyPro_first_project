@@ -42,3 +42,10 @@ def sort_by_date(dict_list: list[dict], direction: bool = True) -> list:
     else:
         new_dict_list = sorted(temp_dict_list, key=lambda x: datetime.fromisoformat(x["date"]), reverse=direction)
         return new_dict_list
+
+
+def process_bank_search(data:list[dict], search:str)->list[dict]:
+    pass
+
+def process_bank_operations(data:list[dict], categories:list)->dict:
+    pass
