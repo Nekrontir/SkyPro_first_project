@@ -17,11 +17,12 @@ def filter_by_state(dict_list: list, state_in_dict: str = "EXECUTED") -> list:
         return new_dict_list
 
     for dictionary in dict_list:
-        if bool(dictionary) == 0:
-            raise ValueError("В списке есть пустые словари")
-    for dictionary in dict_list:
-        if dictionary["state"] == state_in_dict:
-            new_dict_list.append(dictionary)
+        try:
+            if dictionary["state"] == state_in_dict:
+                new_dict_list.append(dictionary)
+        except KeyError:
+            continue
+
     return new_dict_list
 
 

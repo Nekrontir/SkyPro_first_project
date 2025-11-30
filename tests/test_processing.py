@@ -11,8 +11,7 @@ def test_filter_by_state(dict_list: list) -> None:
 
 
 def test_filter_by_state_2(empty_dict_list: list) -> None:
-    with pytest.raises(ValueError):
-        filter_by_state(empty_dict_list)
+       assert filter_by_state(empty_dict_list) == []
 
 
 @pytest.mark.parametrize(
