@@ -1,4 +1,7 @@
+import collections
+import re
 from datetime import datetime
+from typing import Any
 
 
 def filter_by_state(dict_list: list, state_in_dict: str = "EXECUTED") -> list:
@@ -44,8 +47,33 @@ def sort_by_date(dict_list: list[dict], direction: bool = True) -> list:
         return new_dict_list
 
 
-def process_bank_search(data:list[dict], search:str)->list[dict]:
-    pass
+def process_bank_search(data: list[dict], search: str) -> list[dict]:
+    """
+    Функция принимает список словарей с данными о банковских операциях и строку поиска.
+    Возвращает список словарей, у которых в описании есть данная строка
+    """
+    pattern = re.compile(search)
+    result: list[dict] = []
 
-def process_bank_operations(data:list[dict], categories:list)->dict:
-    pass
+    for transaction in data:
+        description = transaction.get("description", "")
+        if pattern.search(description):
+            result.append(transaction)
+
+    return result
+
+
+def process_bank_operations(data: list[dict], categories: list) -> dict:
+    """
+    Функция принимает список словарей с данными о банковских операциях и список категорий операций.
+    Возвращает словарь, в котором ключи — это названия категорий,
+    значения — это количество операций в каждой категории.
+    """
+    counter: Any = collections.Counter()
+
+    for transaction in data:
+        description = transaction.get("description")
+        if description in categories:
+            counter[description] += 1
+
+    return {category: counter.get(category, 0) for category in categories}
