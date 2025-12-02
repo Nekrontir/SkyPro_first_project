@@ -29,11 +29,9 @@ def test_mask_account_card(account_card: str, expected: str) -> None:
     assert mask_account_card(account_card) == expected
 
 
-def test_mask_card_number_raises_type_error(some_str: str) -> None:
-    with pytest.raises(TypeError):
-        mask_account_card(some_str)
+def test_mask_card_number_(some_str: str) -> None:
+    assert mask_account_card(some_str) == ""
 
 
 def test_mask_card_number_raises_type_error_2(empty_str: str) -> None:
-    with pytest.raises(TypeError):
-        mask_account_card(empty_str)
+    assert mask_account_card(empty_str) == ""

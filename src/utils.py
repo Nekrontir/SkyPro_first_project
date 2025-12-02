@@ -2,7 +2,7 @@ import json
 import logging
 import os
 
-project_dir = os.path.dirname(os.getcwd())
+project_dir = os.path.dirname(__name__)
 log_file_path = os.path.join(project_dir, "logs", "utils_mod.log")  # путь для логов
 
 

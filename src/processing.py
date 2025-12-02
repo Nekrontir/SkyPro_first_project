@@ -1,4 +1,7 @@
+import collections
+import re
 from datetime import datetime
+from typing import Any
 
 
 def filter_by_state(dict_list: list, state_in_dict: str = "EXECUTED") -> list:
@@ -14,11 +17,12 @@ def filter_by_state(dict_list: list, state_in_dict: str = "EXECUTED") -> list:
         return new_dict_list
 
     for dictionary in dict_list:
-        if bool(dictionary) == 0:
-            raise ValueError("В списке есть пустые словари")
-    for dictionary in dict_list:
-        if dictionary["state"] == state_in_dict:
-            new_dict_list.append(dictionary)
+        try:
+            if dictionary["state"] == state_in_dict:
+                new_dict_list.append(dictionary)
+        except KeyError:
+            continue
+
     return new_dict_list
 
 
@@ -42,3 +46,35 @@ def sort_by_date(dict_list: list[dict], direction: bool = True) -> list:
     else:
         new_dict_list = sorted(temp_dict_list, key=lambda x: datetime.fromisoformat(x["date"]), reverse=direction)
         return new_dict_list
+
+
+def process_bank_search(data: list[dict], search: str) -> list[dict]:
+    """
+    Функция принимает список словарей с данными о банковских операциях и строку поиска.
+    Возвращает список словарей, у которых в описании есть данная строка
+    """
+    pattern = re.compile(search)
+    result: list[dict] = []
+
+    for transaction in data:
+        description = transaction.get("description", "")
+        if pattern.search(description):
+            result.append(transaction)
+
+    return result
+
+
+def process_bank_operations(data: list[dict], categories: list) -> dict:
+    """
+    Функция принимает список словарей с данными о банковских операциях и список категорий операций.
+    Возвращает словарь, в котором ключи — это названия категорий,
+    значения — это количество операций в каждой категории.
+    """
+    counter: Any = collections.Counter()
+
+    for transaction in data:
+        description = transaction.get("description")
+        if description in categories:
+            counter[description] += 1
+
+    return {category: counter.get(category, 0) for category in categories}
